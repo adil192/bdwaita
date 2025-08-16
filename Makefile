@@ -4,7 +4,7 @@ download: build/original
 
 patch: build/patched
 
-build: build/built/gnome-shell-light.css
+build: build/built/gnome-shell.css
 
 clean:
 	rm -rf build/
@@ -20,12 +20,13 @@ build/patched: build/original
 	cp -r build/original build/patched
 	echo TODO: Add patching commands here
 
-build/built/gnome-shell-light.css: build/patched
+build/built/gnome-shell.css: build/patched
 	rm -rf build/built
 	cp -r build/patched build/built
 	for file in build/built/*.scss; do \
 		sass --no-source-map --load-path build/built/gnome-shell-sass/ --silence-deprecation=slash-div,mixed-decls,color-functions,global-builtin,import "$$file" "$${file%.scss}.css"; \
 	done
+	cp build/built/gnome-shell-dark.css build/built/gnome-shell.css
 	rm -rf build/built/*.scss
 	rm -rf build/built/gnome-shell-sass
 	rm -rf build/built/meson.build
