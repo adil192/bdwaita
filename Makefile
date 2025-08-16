@@ -1,4 +1,4 @@
-.PHONY: download patch build clean
+.PHONY: download patch build install clean
 
 download: build/original
 
