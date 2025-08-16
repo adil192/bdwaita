@@ -1,0 +1,31 @@
+.PHONY: download patch build clean
+
+download: build/original
+
+patch: build/patched
+
+build: build/built/gnome-shell-light.css
+
+clean:
+	rm -rf build/
+
+build/original:
+	mkdir -p build/
+	git -C build/gnome-shell pull || git clone https://gitlab.gnome.org/GNOME/gnome-shell.git build/gnome-shell -b gnome-48
+	rm -rf build/original
+	cp -r build/gnome-shell/data/theme build/original
+
+build/patched: build/original
+	rm -rf build/patched
+	cp -r build/original build/patched
+	echo TODO: Add patching commands here
+
+build/built/gnome-shell-light.css: build/patched
+	rm -rf build/built
+	cp -r build/patched build/built
+	for file in build/built/*.scss; do \
+		sass --no-source-map --load-path build/built/gnome-shell-sass/ --silence-deprecation=slash-div,mixed-decls,color-functions,global-builtin,import "$$file" "$${file%.scss}.css"; \
+	done
+	rm -rf build/built/*.scss
+	rm -rf build/built/gnome-shell-sass
+	rm -rf build/built/meson.build
