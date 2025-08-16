@@ -23,7 +23,7 @@ build/original:
 build/patched: build/original
 	rm -rf build/patched
 	cp -r build/original build/patched
-	echo TODO: Add patching commands here
+	./scripts/patch_colors.sh
 
 build/built/gnome-shell.css: build/patched
 	rm -rf build/built
