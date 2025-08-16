@@ -6,6 +6,11 @@ patch: build/patched
 
 build: build/built/gnome-shell.css
 
+install: build
+	mkdir -p ~/.local/share/themes/custom-adwaita/gnome-shell/
+	cp -r build/built/* ~/.local/share/themes/custom-adwaita/gnome-shell/
+	gsettings set org.gnome.shell.extensions.user-theme name 'custom-adwaita'
+
 clean:
 	rm -rf build/
 
