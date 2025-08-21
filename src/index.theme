@@ -1,0 +1,9 @@
+[Desktop Entry]
+Type=X-GNOME-Metatheme
+Name=Bdwaita
+Comment=A stock-like theme aiming to improve looks and usability, based on Adwaita.
+Encoding=UTF-8
+
+[X-GNOME-Metatheme]
+GtkTheme=Bdwaita
+ButtonLayout=close,minimize,maximize:menu

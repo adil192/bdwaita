@@ -1,4 +1,4 @@
-A gnome shell theme with darker backgrounds.
+A stock-like theme aiming to improve looks and usability, based on Adwaita.
 
 ## Install
 
