@@ -37,4 +37,4 @@ Gnome Shell, Adwaita vs Bdwaita:
 
 GTK 4 Apps like Gnome Calculator, Adwaita vs Bdwaita:
 
-<img src="doc/adwaita-calculator.png"> <img src="doc/bdwaita-calculator.png">
+<img src="doc/adwaita-calculator.png" width=350> <img src="doc/bdwaita-calculator.png" width=350>
