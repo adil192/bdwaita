@@ -4,16 +4,27 @@ download: build/unpatched
 
 patch: build/patched
 
-build: build/output/gnome-shell/gnome-shell.css
+build: build/output-dark/gnome-shell/gnome-shell.css
 
 install: build
+	echo "Removing old themes if they exist..."
+	rm -rf ~/.local/share/themes/bdwaita/
+	rm -rf ~/.local/share/themes/bdwaita-dark/
+
+	echo "Installing bdwaita theme..."
 	mkdir -p ~/.local/share/themes/bdwaita/
 	cp -r build/output/* ~/.local/share/themes/bdwaita/
+	mkdir -p ~/.local/share/themes/bdwaita-dark/
+	cp -r build/output-dark/* ~/.local/share/themes/bdwaita-dark/
+
+	echo "Enabling bdwaita theme..."
 	dconf write /org/gnome/shell/extensions/user-theme/name "'bdwaita'"
 	dconf write /org/gnome/desktop/interface/gtk-theme "'bdwaita'"
+	dconf write /org/gnome/shell/extensions/nightthemeswitcher/commands/sunrise "'dconf write /org/gnome/desktop/interface/gtk-theme \"\'bdwaita\'\"'"
+	dconf write /org/gnome/shell/extensions/nightthemeswitcher/commands/sunset "'dconf write /org/gnome/desktop/interface/gtk-theme \"\'bdwaita-dark\'\"'"
 
 clean:
-	rm -rf build/patched build/output
+	rm -rf build/patched build/output build/output-dark
 
 purge:
 	rm -rf build/
@@ -49,7 +60,7 @@ build/patched: build/unpatched
 
 SILENCE_DEPRECATION = slash-div,mixed-decls,color-functions,global-builtin,import,strict-unary
 build/output/gnome-shell/gnome-shell.css: build/patched
-	rm -rf build/output
+	rm -rf build/output build/output-dark
 	cp -r build/patched build/output
 
 	for file in build/output/gnome-shell/*.scss; do \
@@ -80,3 +91,11 @@ build/output/gnome-shell/gnome-shell.css: build/patched
 	rm -rf build/output/gtk-3.0/*.scss
 
 	rm -rf build/output/**/meson.build
+
+build/output-dark/gnome-shell/gnome-shell.css: build/output/gnome-shell/gnome-shell.css
+	rm -rf build/output-dark
+	cp -r build/output build/output-dark
+	rm -rf build/output-dark/gnome-shell
+	cp build/output-dark/gtk-4.0/Default-dark.css build/output-dark/gtk-4.0/gtk.css
+	cp build/output-dark/gtk-3.0/gtk-dark.css build/output-dark/gtk-3.0/gtk.css
+	sed -i -e 's/Bdwaita/Bdwaita-dark/g' -e 's/bdwaita/bdwaita-dark/g' build/output-dark/index.theme

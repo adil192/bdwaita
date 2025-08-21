@@ -5,5 +5,5 @@ Comment=A stock-like theme aiming to improve looks and usability, based on Adwai
 Encoding=UTF-8
 
 [X-GNOME-Metatheme]
-GtkTheme=Bdwaita
+GtkTheme=bdwaita
 ButtonLayout=close,minimize,maximize:menu

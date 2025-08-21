@@ -11,7 +11,9 @@ A stock-like theme aiming to improve looks and usability, based on Adwaita.
    sudo dnf install sass
    ```
 
-2. Install the [User Themes](https://extensions.gnome.org/extension/19/user-theme/) extension if you haven't already.
+2. Install these gnome extensions:
+   - [User Themes](https://extensions.gnome.org/extension/19/user-theme/): used to theme the system (gnome shell).
+   - [Night Theme Switcher](https://extensions.gnome.org/extension/2236/night-theme-switcher/): used to switch between light and dark variants of this theme.
 
 3. Run `make install` to build and install the theme.
 
@@ -24,12 +26,15 @@ The following actions are available (but `make install` runs all necessary steps
 - `make patch`: Applies the color changes to the downloaded theme.
 - `make build`: Compiles the scss files to css.
 - `make install`: Copies the theme to `~/.local/share/themes/` and enables it.
-- `make clean`: Deletes the build files.
+- `make clean`: Deletes patched files ready for a fresh build but keeps downloaded stock themes.
+- `make purge`: Deletes all build files included downloaded stock themes.
 
 ## Screenshots
 
-Stock gnome shell theme:
-<img src="doc/unthemed.png">
+Gnome Shell, Adwaita vs Bdwaita:
+<img src="doc/adwaita-shell.png">
+<img src="doc/bdwaita-shell.png">
 
-Modified theme:
-<img src="doc/themed.png">
+GTK 4 Apps like Gnome Calculator, Adwaita vs Bdwaita:
+
+<img src="doc/adwaita-calculator.png"> <img src="doc/bdwaita-calculator.png">
