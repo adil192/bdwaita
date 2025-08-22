@@ -4,20 +4,20 @@ download: build/unpatched
 
 patch: build/patched
 
-build: build/output-dark/gnome-shell/gnome-shell.css
+build: build/output-dark/gtk-3.0/gtk.css
 
 install: build
-	echo "Removing old themes if they exist..."
+	# Removing old themes if they exist...
 	rm -rf ~/.local/share/themes/bdwaita/
 	rm -rf ~/.local/share/themes/bdwaita-dark/
 
-	echo "Installing bdwaita theme..."
+	# Installing bdwaita theme...
 	mkdir -p ~/.local/share/themes/bdwaita/
 	cp -r build/output/* ~/.local/share/themes/bdwaita/
 	mkdir -p ~/.local/share/themes/bdwaita-dark/
 	cp -r build/output-dark/* ~/.local/share/themes/bdwaita-dark/
 
-	echo "Enabling bdwaita theme..."
+	# Enabling bdwaita theme...
 	dconf write /org/gnome/shell/extensions/user-theme/name "'bdwaita'"
 	dconf write /org/gnome/desktop/interface/gtk-theme "'bdwaita'"
 	dconf write /org/gnome/shell/extensions/nightthemeswitcher/commands/sunrise "'dconf write /org/gnome/desktop/interface/gtk-theme \"\'bdwaita\'\"'"
@@ -59,7 +59,7 @@ build/patched: build/unpatched
 	./src/patch_colors.sh
 
 SILENCE_DEPRECATION = slash-div,mixed-decls,color-functions,global-builtin,import,strict-unary
-build/output/gnome-shell/gnome-shell.css: build/patched
+build/output/gtk-3.0/gtk.css: build/patched
 	rm -rf build/output build/output-dark
 	cp -r build/patched build/output
 
@@ -92,7 +92,7 @@ build/output/gnome-shell/gnome-shell.css: build/patched
 
 	rm -rf build/output/**/meson.build
 
-build/output-dark/gnome-shell/gnome-shell.css: build/output/gnome-shell/gnome-shell.css
+build/output-dark/gtk-3.0/gtk.css: build/output/gtk-3.0/gtk.css
 	rm -rf build/output-dark
 	cp -r build/output build/output-dark
 	rm -rf build/output-dark/gnome-shell
