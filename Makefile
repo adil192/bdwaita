@@ -77,11 +77,12 @@ build/output/gtk-3.0/gtk.css: build/patched
 		sass --no-source-map --silence-deprecation=${SILENCE_DEPRECATION} "$$file" "$${file%.scss}.css"; \
 	done
 	rm -rf build/output/gtk-4.0/*.scss
-	cp build/output/gtk-4.0/Default-light.css build/output/gtk-4.0/gtk.css
-	cp build/output/gtk-4.0/Default-light.css build/output/gtk-4.0/gtk-light.css
-	cp build/output/gtk-4.0/Default-dark.css build/output/gtk-4.0/gtk-dark.css
-	cp build/output/gtk-4.0/Default-hc.css build/output/gtk-4.0/gtk-hc.css
-	cp build/output/gtk-4.0/Default-hc-dark.css build/output/gtk-4.0/gtk-hc-dark.css
+	mv build/output/gtk-4.0/Default-light.css build/output/gtk-4.0/gtk-light.css
+	mv build/output/gtk-4.0/Default-dark.css build/output/gtk-4.0/gtk-dark.css
+	mv build/output/gtk-4.0/Default-hc.css build/output/gtk-4.0/gtk-hc.css
+	mv build/output/gtk-4.0/Default-hc-dark.css build/output/gtk-4.0/gtk-hc-dark.css
+	# Setting gtk-light.css as the default gtk.css
+	cp build/output/gtk-4.0/gtk-light.css build/output/gtk-4.0/gtk.css
 
 	for file in build/output/gtk-3.0/*.scss; do \
 	    [[ "$$(basename "$$file")" == _* ]] && continue; \
@@ -96,6 +97,6 @@ build/output-dark/gtk-3.0/gtk.css: build/output/gtk-3.0/gtk.css
 	rm -rf build/output-dark
 	cp -r build/output build/output-dark
 	rm -rf build/output-dark/gnome-shell
-	cp build/output-dark/gtk-4.0/Default-dark.css build/output-dark/gtk-4.0/gtk.css
+	cp build/output-dark/gtk-4.0/gtk-dark.css build/output-dark/gtk-4.0/gtk.css
 	cp build/output-dark/gtk-3.0/gtk-dark.css build/output-dark/gtk-3.0/gtk.css
 	sed -i -e 's/Bdwaita/Bdwaita-dark/g' -e 's/bdwaita/bdwaita-dark/g' build/output-dark/index.theme
