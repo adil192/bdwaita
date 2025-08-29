@@ -18,10 +18,7 @@ install: build
 	cp -r build/output-dark/* ~/.local/share/themes/bdwaita-dark/
 
 	# Enabling bdwaita theme...
-	dconf write /org/gnome/shell/extensions/user-theme/name "'bdwaita'"
-	dconf write /org/gnome/desktop/interface/gtk-theme "'bdwaita'"
-	dconf write /org/gnome/shell/extensions/nightthemeswitcher/commands/sunrise "'dconf write /org/gnome/desktop/interface/gtk-theme \"\'bdwaita\'\"'"
-	dconf write /org/gnome/shell/extensions/nightthemeswitcher/commands/sunset "'dconf write /org/gnome/desktop/interface/gtk-theme \"\'bdwaita-dark\'\"'"
+	./src/enable_theme.sh
 
 clean:
 	rm -rf build/patched build/output build/output-dark
