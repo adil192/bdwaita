@@ -32,11 +32,11 @@ purge:
 build/upstream/gnome-shell/README.md:
 	mkdir -p build/upstream/
 	rm -rf build/upstream/gnome-shell
-	git clone https://gitlab.gnome.org/GNOME/gnome-shell.git build/upstream/gnome-shell -b gnome-48
+	git clone https://gitlab.gnome.org/GNOME/gnome-shell.git build/upstream/gnome-shell -b gnome-50
 build/upstream/gtk-4.0/README.md:
 	mkdir -p build/upstream/
 	rm -rf build/upstream/gtk-4.0
-	git clone https://gitlab.gnome.org/GNOME/gtk.git build/upstream/gtk-4.0 -b gtk-4-18
+	git clone https://gitlab.gnome.org/GNOME/gtk.git build/upstream/gtk-4.0 -b gtk-4-22
 build/upstream/gtk-3.0/README.md:
 	mkdir -p build/upstream/
 	rm -rf build/upstream/gtk-3.0
