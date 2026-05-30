@@ -55,7 +55,7 @@ build/patched: build/unpatched
 	cp src/index.theme build/patched/
 	./src/patch_colors.sh
 
-SILENCE_DEPRECATION = slash-div,mixed-decls,color-functions,global-builtin,import,strict-unary
+SILENCE_DEPRECATION = slash-div,color-functions,global-builtin,if-function,import,strict-unary
 build/output/gtk-3.0/gtk.css: build/patched
 	rm -rf build/output build/output-dark
 	cp -r build/patched build/output
