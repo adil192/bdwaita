@@ -1,10 +1,10 @@
-.PHONY: download patch build install clean purge
+.PHONY: build download patch install clean purge
+
+build: build/output-dark/gtk-3.0/gtk.css
 
 download: build/unpatched
 
 patch: build/patched
-
-build: build/output-dark/gtk-3.0/gtk.css
 
 install: build
 	# Removing old themes if they exist...
