@@ -53,7 +53,7 @@ build/patched: build/unpatched
 	rm -rf build/patched build/output
 	cp -r build/unpatched build/patched
 	cp src/index.theme build/patched/
-	./src/patch_colors.sh
+	./src/patch_scss.sh
 
 SILENCE_DEPRECATION = slash-div,color-functions,global-builtin,if-function,import,strict-unary
 build/output/gtk-3.0/gtk.css: build/patched
