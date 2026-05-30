@@ -86,6 +86,8 @@ build/output/gtk-3.0/gtk.css: build/patched
 		echo "Building $$file"; \
 		sass --no-source-map --silence-deprecation=${SILENCE_DEPRECATION} "$$file" "$${file%.scss}.css"; \
 	done
+	cp build/output/gtk-3.0/gtk-contained.css build/output/gtk-3.0/gtk.css
+	cp build/output/gtk-3.0/gtk-contained-dark.css build/output/gtk-3.0/gtk-dark.css
 	rm -rf build/output/gtk-3.0/*.scss
 
 	rm -rf build/output/**/meson.build
